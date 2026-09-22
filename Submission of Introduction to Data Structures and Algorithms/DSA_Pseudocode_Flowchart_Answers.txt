@@ -1,0 +1,333 @@
+DSA PRACTICE ASSIGNMENT
+Topics: Pseudocode, Flowcharts, Time Complexity, Space Complexity
+
+SECTION 1: PSEUDOCODE PROBLEMS
+
+PC-1: PRIME NUMBER CHECKER
+
+Pseudocode:
+
+BEGIN
+    INPUT N
+
+    IF N <= 1 THEN
+        PRINT "Not Prime"
+        STOP
+    END IF
+
+    i <- 2
+
+    WHILE i * i <= N DO
+        IF N MOD i = 0 THEN
+            PRINT "Not Prime"
+            STOP
+        END IF
+
+        i <- i + 1
+    END WHILE
+
+    PRINT "Prime"
+END
+
+
+Example 1:
+Input: N = 61
+Output: Prime
+
+Example 2:
+Input: N = 8
+Output: Not Prime
+
+
+PC-2: NUMBER DIGIT REVERSAL
+
+Pseudocode:
+
+BEGIN
+    INPUT N
+
+    reverse <- 0
+
+    WHILE N > 0 DO
+        digit <- N MOD 10
+        reverse <- reverse * 10 + digit
+        N <- N / 10
+    END WHILE
+
+    PRINT reverse
+END
+
+
+Example 1:
+Input: N = 1234
+Output: 4321
+
+Example 2:
+Input: N = 806
+Output: 608
+
+
+SECTION 2: FLOWCHART PROBLEMS
+
+FC-1: PRIME NUMBER FLOWCHART
+
+Flowchart steps to draw:
+
+START
+  |
+INPUT N
+  |
+Is N <= 1?
+  | YES
+  v
+PRINT "Not Prime"
+  |
+ END
+
+If NO:
+  |
+i <- 2
+  |
+Is i*i <= N?
+  | NO
+  v
+PRINT "Prime"
+  |
+ END
+
+If YES:
+  |
+Is N MOD i = 0?
+  | YES
+  v
+PRINT "Not Prime"
+  |
+ END
+
+If NO:
+  |
+i <- i + 1
+  |
+Go back to: Is i*i <= N?
+
+
+Standard symbols:
+- Oval: START / END
+- Parallelogram: INPUT / OUTPUT
+- Rectangle: PROCESS
+- Diamond: DECISION
+
+
+FC-2: NUMBER DIGIT REVERSAL FLOWCHART
+
+Flowchart steps to draw:
+
+START
+  |
+INPUT N
+  |
+reverse <- 0
+  |
+Is N > 0?
+  | NO
+  v
+PRINT reverse
+  |
+ END
+
+If YES:
+  |
+digit <- N MOD 10
+  |
+reverse <- reverse * 10 + digit
+  |
+N <- N / 10
+  |
+Go back to: Is N > 0?
+
+
+Standard symbols:
+- Oval: START / END
+- Parallelogram: INPUT / OUTPUT
+- Rectangle: PROCESS
+- Diamond: DECISION
+
+
+SECTION 3: TIME COMPLEXITY PROBLEMS
+
+TC-1: LINEAR SEARCH TIME COMPLEXITY
+
+Sample Array:
+{8, 61, 2, 3, 4, 0}
+
+Best Case:
+Target = 8.
+The target is the first element, so only one comparison is needed.
+
+Best Case Time Complexity = O(1)
+
+Worst Case:
+Target = 0, or a target not present such as 5.
+The algorithm may check all N elements.
+
+Worst Case Time Complexity = O(N)
+
+Average Case:
+For a target at a random position, approximately half of the elements are checked on average.
+
+Average Case Time Complexity = O(N)
+
+
+TC-2: ITERATIVE BINARY SEARCH COMPLEXITY
+
+Sample Sorted Array:
+{0, 2, 3, 4, 8, 61}
+
+Target = 4
+
+Step 1:
+low = 0, high = 5
+mid = (0 + 5) / 2 = 2
+arr[2] = 3
+
+3 < 4, so search the right half.
+
+Remaining range:
+{4, 8, 61}
+
+Step 2:
+low = 3, high = 5
+mid = (3 + 5) / 2 = 4
+arr[4] = 8
+
+8 > 4, so search the left half.
+
+Remaining range:
+{4}
+
+Step 3:
+low = 3, high = 3
+mid = 3
+arr[3] = 4
+
+Target found.
+
+Worst-case derivation:
+
+After k comparisons, the remaining search space is:
+
+N / 2^k
+
+When one element remains:
+
+N / 2^k = 1
+
+Therefore:
+
+N = 2^k
+k = log2(N)
+
+Worst Case Time Complexity = O(log N)
+
+
+TC-3: MERGE SORT TIME COMPLEXITY
+
+Sample Array:
+{8, 61, 2, 3, 4, 0}
+
+Division / Split Tree:
+
+                {8, 61, 2, 3, 4, 0}
+                   /             \
+             {8, 61, 2}       {3, 4, 0}
+              /      \          /      \
+            {8}     {61, 2}   {3}     {4, 0}
+                      / \               / \
+                    {61} {2}          {4} {0}
+
+Recurrence:
+
+T(N) = 2T(N/2) + O(N)
+
+At every level of the recursion tree, total merge work is O(N).
+
+Number of levels = log2(N)
+
+Therefore:
+
+T(N) = O(N log N)
+
+Best Case = O(N log N)
+Average Case = O(N log N)
+Worst Case = O(N log N)
+
+
+SECTION 4: SPACE COMPLEXITY PROBLEMS
+
+SC-1: LINEAR SEARCH SPACE COMPLEXITY
+
+Iterative Linear Search uses only a constant number of variables such as the loop index and target.
+
+No additional array or data structure is created.
+
+Auxiliary Space Complexity = O(1)
+
+
+SC-2: BINARY SEARCH SPACE COMPLEXITY
+
+The assignment asks specifically for Iterative Binary Search.
+
+It uses only variables such as:
+- low
+- high
+- mid
+
+No recursive call stack is used.
+
+Auxiliary Space Complexity = O(1)
+
+
+SC-3: MERGE SORT SPACE COMPLEXITY
+
+Merge Sort requires extra temporary arrays while merging the divided subarrays.
+
+Temporary memory required is proportional to N.
+
+Auxiliary space for merging = O(N)
+
+The recursion stack requires O(log N) space.
+
+Overall:
+O(N) + O(log N) = O(N)
+
+Therefore:
+
+Auxiliary Space Complexity = O(N)
+
+
+COMPARISON WITH IN-PLACE SORTING
+
+Insertion Sort generally uses O(1) auxiliary space.
+
+Quick Sort generally uses O(log N) auxiliary stack space on average, although its worst-case recursion stack can be O(N).
+
+Merge Sort requires O(N) auxiliary space because of the temporary arrays used during merging.
+
+
+FINAL COMPLEXITY SUMMARY
+
+Linear Search:
+Best Time    = O(1)
+Average Time = O(N)
+Worst Time   = O(N)
+Space        = O(1)
+
+Iterative Binary Search:
+Time  = O(log N)
+Space = O(1)
+
+Merge Sort:
+Best Time    = O(N log N)
+Average Time = O(N log N)
+Worst Time   = O(N log N)
+Space        = O(N)
